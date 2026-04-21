@@ -48,7 +48,7 @@ describe('App – rendering', () => {
 
   it('does not show the error banner initially', () => {
     const wrapper = buildWrapper()
-    expect(wrapper.find('[class*="red"]').exists()).toBe(false)
+    expect(wrapper.text()).not.toContain('Failed to submit form')
   })
 })
 
@@ -205,9 +205,8 @@ describe('App – successful form submission', () => {
     await wrapper.find('form').trigger('submit.prevent')
     await flushPromises()
 
-    // No red-coloured alert should be visible
-    const errorBanner = wrapper.find('[class*="red-400"]')
-    expect(errorBanner.exists()).toBe(false)
+    // No error message should be visible
+    expect(wrapper.text()).not.toContain('Failed to submit form')
   })
 })
 
