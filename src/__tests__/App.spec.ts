@@ -162,7 +162,7 @@ describe('App – successful form submission', () => {
     await wrapper.find('form').trigger('submit.prevent')
     await flushPromises()
 
-    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string)
+    const body = JSON.parse(fetchMock.mock.calls[0]![1].body as string)
     expect(body).toEqual({
       firstName: 'Alice',
       lastName: 'Smith',
